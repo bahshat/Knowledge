@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import QuestionList from "./QuestionList";
-import Answers
- from "./Answers";
+import Answers from "./Answers";
 function Parent() {
   const [showAnswer, setShowAnswer] = useState(false);
   const [questionId, setQuestionId] = useState(1);
-  const [question, setQuestion] = useState('');
-  
+  const [question, setQuestion] = useState("");
+
   const questionClicked = (id: number, answer: string) => {
     console.log("[INVOKED] questionClicked");
     setShowAnswer(true);
@@ -16,7 +15,11 @@ function Parent() {
 
   return (
     <div>
-      {showAnswer ? <Answers questionNum={questionId} question={question} ></Answers> : <QuestionList onClicked={questionClicked}></QuestionList>}
+      {showAnswer ? (
+        <Answers questionNum={questionId} question={question}></Answers>
+      ) : (
+        <QuestionList onClicked={questionClicked}></QuestionList>
+      )}
     </div>
   );
 }
