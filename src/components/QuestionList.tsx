@@ -1,14 +1,14 @@
 import { MouseEvent, useEffect, useState } from "react";
-import { fetchData } from "../data/data";
+import { getQuestions } from "../data/data";
 function QuestionList(props:any) {
   const [questionsArr, setQuestionsArr] = useState([]);
   const {onClicked} = props;
   
   useEffect(() => {
-    const getData = async () => {
-      setQuestionsArr(await fetchData());  
+    const getQuestion = async () => {
+      setQuestionsArr(await getQuestions());  
     }
-    getData();
+    getQuestion();
   },[]);
 
   const [selectedItem, setSelectedItem] = useState(-1);
@@ -24,12 +24,12 @@ function QuestionList(props:any) {
                 ? "list-group-item active"
                 : "list-group-item"
             }
-            key={question["id"]}
+            key={question["qid"]}
             onClick={() => {
-              onClicked(question["id"], question["A"])
+              onClicked(question["qid"], question["question"])
             }}
           >
-            {question["Q"]}
+            {question["question"]}
           </li>
         ))}
       </ul>

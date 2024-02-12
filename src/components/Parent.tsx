@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import QuestionList from "./QuestionList";
+import Answers
+ from "./Answers";
 function Parent() {
   const [showAnswer, setShowAnswer] = useState(false);
-  const [answerId, setAnswerId] = useState(1);
-  const [answer, setAnswer] = useState('');
+  const [questionId, setQuestionId] = useState(1);
+  const [question, setQuestion] = useState('');
   
-  const clicked = (id: number, answer: string) => {
-    console.log("lai bhari");
+  const questionClicked = (id: number, answer: string) => {
+    console.log("[INVOKED] questionClicked");
     setShowAnswer(true);
-    setAnswerId(id);
-    setAnswer(answer);
+    setQuestionId(id);
+    setQuestion(answer);
   };
 
   return (
     <div>
-      {showAnswer ? <p>{`Answer ${answerId}: \n ${answer}`}</p> : <QuestionList onClicked={clicked}></QuestionList>}
+      {showAnswer ? <Answers questionNum={questionId} question={question} ></Answers> : <QuestionList onClicked={questionClicked}></QuestionList>}
     </div>
   );
 }
